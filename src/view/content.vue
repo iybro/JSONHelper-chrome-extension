@@ -4,18 +4,18 @@
       <el-card class="box-card">
         <div slot="header" class="clearfix">
 <!--          <span class="title">待解析字符</span>-->
-          <el-link type="primary" class="title">待解析字符</el-link>
+          <el-link type="primary" class="title">Inputs</el-link>
           <el-button type="primary" icon="el-icon-s-promotion" circle style="float: right; " size="small" @click="parse"></el-button>
         </div>
         <div class="text item">
           <el-row type="flex" justify="center">
             <el-col :span="24">
-              <el-input placeholder="提取表达式" v-model="req.expression" @keyup.enter="parse">
+              <el-input placeholder="expression" v-model="req.expression" @keyup.enter="parse">
               </el-input>
             </el-col>
           </el-row>
           <el-row :gutter="0">
-            <el-select v-model="req.expression" placeholder="请选择" @change="parse">
+            <el-select v-model="req.expression" placeholder="expression" @change="parse">
               <el-option
                   v-for="item in options"
                   :key="item.value"
@@ -28,7 +28,7 @@
             <el-input
                 type="textarea"
                 :rows="25"
-                placeholder="请输入内容"
+                placeholder="please input your json content"
                 v-model="req.content">
             </el-input>
           </el-row>
@@ -38,18 +38,10 @@
     <el-col :span="12">
       <el-card class="box-card">
         <div slot="header" class="clearfix">
-          <el-link type="primary" class="title">解析结果</el-link><el-link type="info">{{ dataType }}</el-link>
+          <el-link type="primary" class="title">Evaluation Results</el-link>&nbsp;&nbsp;&nbsp;&nbsp;<el-link type="info">{{ dataType }}</el-link>
           <el-button type="success" icon="el-icon-circle-check" circle style="float: right; " v-if="status" size="small"></el-button>
           <el-button type="danger" icon="el-icon-circle-close" circle style="float: right;"  v-if="!status" size="small"></el-button>
         </div>
-        <!--        <div class="text item">
-                  <el-input
-                      type="textarea"
-                      :rows="32"
-                      placeholder="请输入内容"
-                      v-model="parsed">
-                  </el-input>
-                </div>-->
         <pre v-html="formattedJSON"></pre>
       </el-card>
     </el-col>
@@ -66,30 +58,30 @@ export default {
     return {
       options: [{
         value: '$',
-        label: '原数据'
+        label: 'Origin data'
       }, {
         value: '$.store.book[*].author',
-        label: '所有作者'
+        label: 'The authors of all books'
       }, {
         value: '$.store.book[*].price',
-        label: '所有价格'
+        label: 'The prices of all books'
       }, {
         value: '$.store.book[-1].price',
-        label: '末位元素价格'
+        label: 'Price of last book'
       }, {
-        value: '$.store.book[?(@.price > 20)]',
-        label: '价格大于20'
+        value: '$.store.book[?(@.price < 20)]',
+        label: 'All books in store cheaper than 10'
       },{
           value: '$..book[?(@.isbn)]',
-          label: '含isbn属性的书'
+          label: 'All books with an ISBN number'
         },
         {
           value: '$.store.book.length()',
-          label: '元素个数'
+          label: 'The number of books'
         },
         {
           value: '$..book[*].price.min()',
-          label: '最低价格'
+          label: 'lowest Price'
         },
 
 
@@ -97,8 +89,8 @@ export default {
       value: '',
       status: true,
       msg: 'content',
-      parsed: "转换提取到的内容",
-      formattedJSON: "转换提取到的内容",
+      parsed: "Can't extract any data",
+      formattedJSON: "Extracted data",
       dataType: "",
       req: {
         content: "{\n" +
