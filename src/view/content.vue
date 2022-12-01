@@ -8,21 +8,22 @@
           <el-button type="primary" icon="el-icon-s-promotion" circle style="float: right; " size="small" @click="parse"></el-button>
         </div>
         <div class="text item">
-          <el-row type="flex" justify="center">
-            <el-col :span="24">
-              <el-input placeholder="expression" v-model="req.expression" @keyup.enter="parse">
+          <el-row type="flex" justify="left">
+            <el-col :span="12">
+              <div class="sub-title">examples:</div>
+              <el-select v-model="req.expression" placeholder="expression" @change="parse">
+                <el-option
+                    v-for="item in options"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value">
+                </el-option>
+              </el-select>
+            </el-col>
+            <el-col :span="12">
+              <div class="sub-title">expression:</div><el-input placeholder="expression" v-model="req.expression" @keyup.enter="parse">
               </el-input>
             </el-col>
-          </el-row>
-          <el-row :gutter="0">
-            <el-select v-model="req.expression" placeholder="expression" @change="parse">
-              <el-option
-                  v-for="item in options"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value">
-              </el-option>
-            </el-select>
           </el-row>
           <el-row>
             <el-input
