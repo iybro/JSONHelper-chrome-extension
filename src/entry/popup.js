@@ -4,8 +4,13 @@ import App from '../view/popup.vue'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 
+import VueDarkMode from "@growthbunker/vuedarkmode";
 Vue.config.productionTip = false
+
+
 Vue.use(ElementUI);
+Vue.use(VueDarkMode);
+
 new Vue({
   render: (h) => h(App)
 }).$mount('#app')

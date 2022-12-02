@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "JSONHelper",
-    "description": "Json Helper,a better JSON parsing extension, also provides data extraction based on JsonPath to help more efficient data visualization.",
+    "description": "Json Helper,a better JSON parsing extension, also provides data extraction based on JsonPath.",
     "version": "0.0.1",
     "action": {
         "default_popup": "popup.html",
